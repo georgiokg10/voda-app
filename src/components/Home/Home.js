@@ -1,27 +1,39 @@
 import React, { useEffect } from "react";
-import Menu from '../Menu/Menu';
-import DotStepper from '../../common/components/DotStepper';
-import { Container, Row, Col } from 'react-bootstrap';
+import SearchBar from "../SearchBar/SearchBar";
+import DotStepper from "../../common/components/DotStepper";
 
 const Home = ({ menuData, stepData }) => {
-
-  const [currentStep, setCurrentStep] = React.useState(0);
+  const [currentStepSlider, setCurrentStepSlider] = React.useState(0);
+  const [currentStepTitle, setCurrentStepTitle] = React.useState(0);
 
   return (
     <>
-      <div className="menu title" >
-        {menuData.length > 0 && menuData.map((item, idx) => {
-          return (
-            <Menu key={idx} menu={item} />
-          )
-        })}
-
+      <div className="options">
+        {menuData.length > 0 && (
+          <>
+            <DotStepper
+              isMenu
+              isSection={false}
+              steps={menuData}
+              handleStep={setCurrentStepTitle}
+              activeStep={currentStepTitle}
+            />
+          </>
+        )}
+        <SearchBar />
       </div>
-      <div className="slider" >
-        {stepData.length > 0 && <DotStepper steps={stepData} handleStep={setCurrentStep} activeStep={currentStep} />}
+      <div className="slider">
+        {stepData.length > 0 && (
+          <DotStepper
+            isMenu={false}
+            isSection={false}
+            steps={stepData}
+            handleStep={setCurrentStepSlider}
+            activeStep={currentStepSlider}
+          />
+        )}
       </div>
     </>
-
   );
 };
 
