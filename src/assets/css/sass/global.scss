@@ -6,7 +6,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  background-color: #e2f1ff !important;
+  background-color: #f1f1f1 !important;
 }
 
 img {
@@ -55,7 +55,12 @@ img {
 }
 
 .search {
+  margin-left: 26px;
+  margin-top: 18px;
   .search-text {
+    display: flex;
+    margin-top: 6;
+
     input {
       background: none !important;
       border: none !important;
@@ -63,7 +68,14 @@ img {
       width: 390px !important;
       color: white;
       margin-left: 0;
+      padding: 10px;
       text-align: center;
+      margin-right: 5;
+    }
+
+    .icon {
+      color: white;
+      margin-top: 10px;
     }
   }
 
@@ -81,7 +93,7 @@ img {
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  grid-gap: 10px;
+  grid-gap: 22px;
   padding: 10px;
   max-width: min-content;
   .grid-first-item {
@@ -90,7 +102,7 @@ img {
     text-align: center;
     padding: 20px;
     width: 250px;
-    height: 510px;
+    height: 562px;
     border-radius: 5px;
     border-radius: 5px;
     word-break: break-word;
@@ -104,7 +116,7 @@ img {
     border-radius: 5px;
     word-break: break-word;
     img {
-      width: 195px;
+      width: 215px;
       height: 130px;
     }
   }
@@ -123,8 +135,7 @@ img {
 .sections {
   display: flex;
   place-content: center;
-  width: 75%;
-  justify-content: flex-end;
+  margin-left: 800px;
 
   .nav-item {
     display: flex;
@@ -141,9 +152,9 @@ img {
 }
 
 .section-card-item {
-  width: 550px;
-  padding: 20px;
-  height: 450px;
+  width: 586px;
+  padding: 28px;
+  height: 500px;
   margin-right: 20px;
 }
 
@@ -166,7 +177,6 @@ img {
 
 .loadingIcon {
   img {
-    height: 250px;
     left: 50%;
     margin-top: -125px;
     margin-left: -125px;
@@ -184,7 +194,6 @@ img {
     padding: 10px;
     border-color: none !important;
     border: none;
-    margin-bottom: 15px;
   }
 
   button {
@@ -225,14 +234,16 @@ img {
   padding: 14px;
   background-color: #405264 !important;
   color: white !important;
-  width: 420px;
+  width: 383px;
   border: 1px solid grey;
   z-index: 1;
   position: absolute;
+  margin-top: 60px;
+  margin-left: 160px;
 }
 
 .selected-search-item {
-  background-color: #e3e3e3;
+  background-color: #63c2d1;
   color: black;
   border-radius: 2px;
 }
@@ -240,7 +251,40 @@ img {
 .ml-25 {
   margin-left: 25px !important;
 }
+.p-8 {
+  padding: 8px !important;
+}
 
 .fs-14 {
   font-size: 14pt;
+}
+
+.errorMsg {
+  color: red;
+  display: flex;
+  margin-left: 110px;
+  margin-bottom: 18px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.selected-business-item {
+  background-color: #283642 !important;
+  color: rgb(245, 235, 235) !important;
+}
+
+.not-selected-business-item {
+  background-color: rgb(245, 235, 235) !important;
+  color: rgb(0, 0, 0) !important;
+}
+
+.white-text {
+  color: rgb(245, 235, 235);
+}
+
+.gallery-title {
+  display: flex !important;
+  justify-content: center !important;
 }

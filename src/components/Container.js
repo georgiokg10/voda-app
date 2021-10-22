@@ -3,7 +3,7 @@ import Menu from "./Menu/Menu";
 import BusinessNeeds from "./Sections/SecondSection/BusinessNeeds";
 import Gallery from "./Sections/FirstSection/Gallery";
 import Info from "./Sections/FirstSection/Info";
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   getHomeData,
   getPageData,
@@ -17,7 +17,7 @@ import loading from "../assets/images/loading.gif";
 
 const Container = () => {
   let history = useHistory();
-  const currentVal = history.location.pathname === "/home" ? 0 : 1;
+  let currentPath = history.location.pathname;
 
   const [homeData, setHomeData] = React.useState([]);
   const [pageData, setPageData] = React.useState([]);
@@ -25,8 +25,8 @@ const Container = () => {
   const [stepData, setStepData] = React.useState([]);
   const [error, setError] = React.useState(null);
   const [currentSection, setCurrentSection] = React.useState(0);
-  const [currentStepSlider, setCurrentStepSlider] = React.useState(currentVal);
-  const [currentStepTitle, setCurrentStepTitle] = React.useState(currentVal);
+  const [currentStepSlider, setCurrentStepSlider] = React.useState(0);
+  const [currentStepTitle, setCurrentStepTitle] = React.useState(0);
 
   useEffect(() => {
     (async () => {
@@ -49,15 +49,33 @@ const Container = () => {
         if (sliderDataResp?.data?.length) {
           setStepData(sliderDataResp.data);
         }
-        console.log("homeDataResp", homeDataResp.data);
-        console.log("pageDataResp", pageDataResp.data);
-        console.log("menuDataResp", menuDataResp.data);
-        console.log("sliderDataResp", sliderDataResp.data);
       } catch (error) {
         setError(error);
       }
     })();
   }, []);
+
+  useEffect(() => {
+    switch (currentPath) {
+      case '/home': case '/home/1':
+        setCurrentStepTitle(0);
+        setCurrentStepSlider(0);
+        setCurrentSection(0);
+        break;
+      case '/home/2':
+        setCurrentStepTitle(0);
+        setCurrentStepSlider(0);
+        setCurrentSection(1);
+        break;
+      case '/page2':
+        setCurrentStepTitle(1);
+        setCurrentStepSlider(0);
+        setCurrentSection(0);
+        break;
+      default:
+        return;
+    }
+  }, [currentPath])
 
   const isLoading =
     !menuData.length &&
@@ -72,12 +90,12 @@ const Container = () => {
 
   return (
     <>
-      {isLoading && (
+      {(isLoading || error) && (
         <div className="loadingIcon">
-          <img src={loading}></img>
+          <img src={loading} alt=""></img>
         </div>
       )}
-      {!isLoading && (
+      {!isLoading && !error && (
         <>
           <div className="menu">
             <Menu
@@ -91,13 +109,9 @@ const Container = () => {
           </div>
           {currentStepTitle === 0 ? (
             <>
-              <div className="sections">
-                <Typography variant="h4">h1. Heading</Typography>
-
-                <strong className="title">
-                  {homeData[0].sections[0].description}
-                </strong>
-                <div className="nav-item">
+              <div>
+                <Typography variant="h4" className="gallery-title mt-25">{homeData[0]?.description}</Typography>
+                <div className=" sections nav-item">
                   <DotStepper
                     isMenu={false}
                     isSection
@@ -106,16 +120,17 @@ const Container = () => {
                     activeStep={currentSection}
                   />
                 </div>
+                <div style={{ width: '20%' }}></div>
               </div>
               {/* First item will start on row 2 and column 1, and span 2 rows and 2 columns */}
               {hasImages &&
                 homeData[0].sections.find(
-                  (el, idx) => idx == 0 && currentSection == 0
+                  (el, idx) => idx === 0 && currentSection === 0
                 ) && <Gallery data={homeData} />}
 
               {homeData[0].sections.length > 0 &&
                 homeData[0].sections.find(
-                  (el, idx) => idx == 1 && currentSection == 1
+                  (el, idx) => idx === 1 && currentSection === 1
                 ) && <Info data={homeData} />}
             </>
           ) : (
@@ -123,12 +138,10 @@ const Container = () => {
               {pageData.length && pageData[0].tiles.length > 0 && (
                 <>
                   <Typography variant="h4" className="business-title">
-                    {pageData[0].description}
+                    {pageData[0]?.description}
                   </Typography>
                   <div className="card-flex">
-                    {pageData[0].tiles.map((el, idx) => {
-                      return <BusinessNeeds item={el} key={idx} />;
-                    })}
+                    <BusinessNeeds businessData={pageData[0].tiles} />
                   </div>
                 </>
               )}

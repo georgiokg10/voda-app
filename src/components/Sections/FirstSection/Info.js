@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Card } from "@material-ui/core";
 import { Typography, Slider } from "@material-ui/core";
 import ContactForm from "./ContactForm";
@@ -7,7 +7,6 @@ import { coloredGraph } from "../../../common/constants/constants";
 const Info = ({ data }) => {
   const filteredData = data[0].sections[1];
 
-  console.log(filteredData);
   return (
     <>
       <div className="card-flex">
@@ -18,7 +17,7 @@ const Info = ({ data }) => {
           <div className="mt-45">
             {filteredData.stats.map((el, idx) => {
               return (
-                <>
+                <div key={idx}>
                   <div className="graph-item">
                     <Typography variant="h6" className="fw-bold">
                       {el.title}
@@ -35,7 +34,7 @@ const Info = ({ data }) => {
                     valueLabelDisplay="auto"
                     disabled
                   />
-                </>
+                </div>
               );
             })}
           </div>

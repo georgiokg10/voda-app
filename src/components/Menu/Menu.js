@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import DotStepper from "../../common/components/DotStepper";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Menu = props => {
-  let location = useLocation();
   let history = useHistory();
 
   const {

@@ -11,6 +11,8 @@ const Router = () => {
         <Switch className="col pr-0 pl-0">
           <Redirect from="/" exact to="/home" />
           <Route exact path="/home" component={Container} />
+          <Route exact path="/home/1" component={Container} />
+          <Route exact path="/home/2" component={Container} />
           <Route exact path="/page2" component={Container} />
         </Switch>
         <Footer />

@@ -1,34 +1,35 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Typography, Button } from "@material-ui/core";
 
 const regex = {
-  phone: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/i,
+  phone: /^[+]?(?:[0-9]{2})?[0-9]{10}$/i,
   email: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-  password: /^(\(|\)|\d{5})$/
+  password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/i
 };
 
-export const contactFormValidationSchema = {
+const contactFormValidationSchema = yup.object({
   phone: yup
     .string()
     .matches(regex.phone, {
-      message: "Επιτρεπόμενοι χαρακτήρες τα ελληνικά, η τελεία και η παύλα"
+      message: "Invalid phone number. Please, enter a valid phone number. "
     })
-    .required("Η συμπλήρωση της οδού είναι υποχρεωτική"),
+    .required("Phone number can not be empty."),
   email: yup
     .string()
     .matches(regex.email, {
-      message: "Επιτρεπόμενοι χαρακτήρες τα ελληνικά, η τελεία και η παύλα"
+      message: "Invalid email. Please, enter a valid email."
     })
-    .required("Η συμπλήρωση του αριθμού διεύθυνσης είναι υποχρεωτική"),
+    .required("Email can not be empty."),
   password: yup
     .string()
+    .min(8, "Password must have more than 8 digits")
     .matches(regex.password, {
-      message: "Ο ταχυδρομικός κωδικός θα πρέπει να αποτελείται από 5 ψηφία"
+      message: "Password should include at least a number, a capital letter, a symbol and a low case letter"
     })
-    .required("Η συμπλήρωση του ταχυδρομικού κώδικα είναι υποχρεωτική")
-};
+    .required("Password can not be empty."),
+});
 
 const initialFormValues = {
   phone: "",
@@ -49,10 +50,12 @@ const ContactForm = ({ formData }) => {
       <Formik
         initialValues={initialFormValues}
         validationSchema={contactFormValidationSchema}
-        onSubmit={(values, validateForm, { setSubmitting }) => {
+        onSubmit={(isValid, { setSubmitting }) => {
           setTimeout(() => {
-            validateForm();
             setSubmitting(false);
+            if (isValid) {
+              alert('Form submitted!')
+            } else return;
           }, 400);
         }}
       >
@@ -63,7 +66,7 @@ const ContactForm = ({ formData }) => {
           handleChange,
           handleBlur,
           handleSubmit,
-          isSubmitting
+          isSubmitting,
         }) => (
           <form onSubmit={handleSubmit} className="contactForm mt-15">
             <div>
@@ -71,33 +74,45 @@ const ContactForm = ({ formData }) => {
                 type="phone"
                 name="phone"
                 onChange={handleChange}
-                // onBlur={handleBlur}
+                onBlur={handleBlur}
                 value={values.phone}
-                placeholder="Your Phone"
+                placeholder="Your Phone *"
               />
-              {errors.phone && touched.phone && errors.phone}
+            </div>
+            <div className="errorMsg">
+              {touched.phone && errors.phone && (
+                <> {errors.phone} </>
+              )}
             </div>
             <div>
               <input
                 type="email"
                 name="email"
                 onChange={handleChange}
-                //   onBlur={handleBlur}
+                onBlur={handleBlur}
                 value={values.email}
-                placeholder="Your Email"
+                placeholder="Your Email *"
               />
-              {errors.email && touched.email && errors.email}
+            </div>
+            <div className="errorMsg">
+              {touched.email && errors.email && (
+                <> {errors.email} </>
+              )}
             </div>
             <div>
               <input
                 type="password"
                 name="password"
                 onChange={handleChange}
-                //   onBlur={handleBlur}
+                onBlur={handleBlur}
                 value={values.password}
-                placeholder="Password"
+                placeholder="Password *"
               />
-              {errors.password && touched.password && errors.password}
+            </div>
+            <div className="errorMsg">
+              {touched.password && errors.password && (
+                <> {errors.password} </>
+              )}
             </div>
             <Button
               type="submit"

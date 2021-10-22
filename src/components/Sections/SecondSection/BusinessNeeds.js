@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
-import { Card } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
+import React from "react";
+import { Typography, Paper } from "@material-ui/core";
 
-const BusinessNeeds = ({ item }) => {
-  console.log(item);
+const BusinessNeeds = ({ businessData }) => {
+  const [selectedIdx, setSelectedIdx] = React.useState(-1);
 
-  return (
-    <div className=" business-section">
-      <Card className="item textCenter">
+  return (businessData.map((item, idx) =>
+    <div className="business-section clickable" key={idx}>
+      <Paper className={selectedIdx === idx ? 'selected-business-item item textCenter' : 'item textCenter'} onClick={() => setSelectedIdx(idx)}>
         <div className="mt-25">{item.icon}</div>
         <Typography variant="h5" className="fw-bold mt-25">
           {item.title}
@@ -19,11 +18,12 @@ const BusinessNeeds = ({ item }) => {
           variant="subtitle1"
           className="fw-bold mt-25 nav-link-item clickable"
         >
-          {item.link} >
+          <span className={selectedIdx === idx ? 'selected-business-item' : ''}>{item.link}</span>
         </Typography>
-      </Card>
-    </div>
-  );
+      </Paper>
+    </div >
+  ))
+
 };
 
 export default BusinessNeeds;

@@ -58,8 +58,15 @@ const styles = theme => ({
   displayTitle: {
     display: "flex"
   },
-  paddingSection: {
-    paddingLeft: 25
+  justifyContentEven: {
+    placeContent: "space-evenly",
+    display: "flex",
+    marginBottom: 10,
+    marginLeft: 20
+  },
+  sectionDotsMargin: {
+    marginRight: 65,
+    marginLeft: 5
   }
 });
 
@@ -84,8 +91,6 @@ const DotStepper = props => {
         className,
         isMenu
           ? classes.paddingTopNone
-          : isSection
-          ? classes.paddingSection
           : ""
       )}
     >
@@ -98,7 +103,9 @@ const DotStepper = props => {
                 className="item clickable"
                 style={{
                   fontWeight: idx === activeStep ? "bold" : "",
-                  color: isSection ? "black" : "white"
+                  color: isSection ? "black" : "white",
+                  marginRight: isSection && idx === 0 ? 38 : '',
+                  marginBottom: isSection ? 15 : ''
                 }}
               >
                 {item.title}
@@ -121,9 +128,10 @@ const DotStepper = props => {
             {`${steps[activeStep].subtitle}`}
           </Typography>
         </>
-      )}
+      )
+      }
 
-      <div className={classes.dots}>
+      <div className={isSection ? classes.justifyContentEven : classes.dots}>
         {steps.map((item, index) => (
           <div
             onClick={(e) => {
@@ -131,7 +139,7 @@ const DotStepper = props => {
               isMenu ? updatePath(index) : e.preventDefault();
             }}
             key={index}
-            className={classes.dotMargin}
+            className={isSection ? classes.sectionDotsMargin : classes.dotMargin}
           >
             <div
               className={cn(
@@ -139,18 +147,18 @@ const DotStepper = props => {
                 classes.dotActiveBorder,
                 isMenu
                   ? [
-                      {
-                        [classes.dotActiveMenuColor]: index === activeStep
-                      },
-                      classes.dotMarginMenu
-                    ]
+                    {
+                      [classes.dotActiveMenuColor]: index === activeStep
+                    },
+                    classes.dotMarginMenu
+                  ]
                   : { [classes.dotActiveSliderColor]: index === activeStep }
               )}
             />
           </div>
         ))}
       </div>
-    </Paper>
+    </Paper >
   );
 };
 
