@@ -219,3 +219,28 @@ img {
   background-color: #3f9bff !important;
   color: white;
 }
+
+.search-paper {
+  text-align: start;
+  padding: 14px;
+  background-color: #405264 !important;
+  color: white !important;
+  width: 420px;
+  border: 1px solid grey;
+  z-index: 1;
+  position: absolute;
+}
+
+.selected-search-item {
+  background-color: #e3e3e3;
+  color: black;
+  border-radius: 2px;
+}
+
+.ml-25 {
+  margin-left: 25px !important;
+}
+
+.fs-14 {
+  font-size: 14pt;
+}

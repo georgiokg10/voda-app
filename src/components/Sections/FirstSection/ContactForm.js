@@ -30,12 +30,13 @@ export const contactFormValidationSchema = {
     .required("Η συμπλήρωση του ταχυδρομικού κώδικα είναι υποχρεωτική")
 };
 
+const initialFormValues = {
+  phone: "",
+  email: "",
+  password: ""
+};
+
 const ContactForm = ({ formData }) => {
-  const initialFormValues = {
-    phone: "",
-    email: "",
-    password: ""
-  };
   return (
     <div>
       <Typography variant="h5" className="fw-bold">
@@ -70,8 +71,8 @@ const ContactForm = ({ formData }) => {
                 type="phone"
                 name="phone"
                 onChange={handleChange}
-                //   onBlur={handleBlur}
-                //   value={values.phone}
+                // onBlur={handleBlur}
+                value={values.phone}
                 placeholder="Your Phone"
               />
               {errors.phone && touched.phone && errors.phone}
@@ -82,7 +83,7 @@ const ContactForm = ({ formData }) => {
                 name="email"
                 onChange={handleChange}
                 //   onBlur={handleBlur}
-                //   value={values.email}
+                value={values.email}
                 placeholder="Your Email"
               />
               {errors.email && touched.email && errors.email}
@@ -93,7 +94,7 @@ const ContactForm = ({ formData }) => {
                 name="password"
                 onChange={handleChange}
                 //   onBlur={handleBlur}
-                //   value={values.password}
+                value={values.password}
                 placeholder="Password"
               />
               {errors.password && touched.password && errors.password}
