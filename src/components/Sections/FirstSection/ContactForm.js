@@ -43,7 +43,7 @@ const ContactForm = ({ formData }) => {
       <Typography variant="h5" className="fw-bold">
         {formData.formText}
       </Typography>
-      <Typography variant="subtitle1" gutterBottom className="mt-15">
+      <Typography variant="subtitle1" gutterBottom className="mt-15 mb-50">
         We work with ecosystem leaders, corporations and startups worldwide. How
         can we help you?
       </Typography>
@@ -118,7 +118,7 @@ const ContactForm = ({ formData }) => {
               type="submit"
               variant="contained"
               disabled={isSubmitting}
-              className=""
+              className="mt-45"
             >
               Submit
             </Button>

@@ -226,7 +226,7 @@ img {
 
 .selected-image {
   background-color: #3f9bff !important;
-  color: white;
+  color: white !important;
 }
 
 .search-paper {
@@ -266,8 +266,8 @@ img {
   margin-bottom: 18px;
 }
 
-.mb-20 {
-  margin-bottom: 20px;
+.mb-50 {
+  margin-bottom: 50px !important;
 }
 
 .selected-business-item {

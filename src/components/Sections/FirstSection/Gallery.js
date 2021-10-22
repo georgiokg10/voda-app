@@ -23,7 +23,7 @@ const Gallery = ({ data }) => {
           .filter((item, index) => index !== 0)
           .map((el, idx) => {
             return (
-              <div
+              <Paper
                 key={idx}
                 className={
                   selectedIdx === idx + 1
@@ -34,7 +34,7 @@ const Gallery = ({ data }) => {
               >
                 <img src={el.img} alt="" />
                 <small className="fw-bold">{el.title}</small>
-              </div>
+              </Paper>
             );
           })}
       </div>
