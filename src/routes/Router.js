@@ -5,7 +5,6 @@ import Footer from "../components/Footer/Footer";
 import "./../styles.scss";
 
 const Router = () => {
-
   return (
     <BrowserRouter>
       <div className="page-container">
@@ -17,8 +16,7 @@ const Router = () => {
         <Footer />
       </div>
     </BrowserRouter>
-  )
-
+  );
 };
 
 export default Router;

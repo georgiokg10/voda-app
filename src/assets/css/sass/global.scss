@@ -6,6 +6,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+  background-color: #e2f1ff !important;
 }
 
 img {
@@ -43,6 +44,14 @@ img {
   .subtitle {
     font-size: small;
   }
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.fw-bold {
+  font-weight: bold !important;
 }
 
 .search {
@@ -123,4 +132,90 @@ img {
     justify-content: center;
     margin-left: 730px;
   }
+}
+
+.card-flex {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.section-card-item {
+  width: 550px;
+  padding: 20px;
+  height: 450px;
+  margin-right: 20px;
+}
+
+.mt-15 {
+  margin-top: 15px !important;
+}
+
+.mt-25 {
+  margin-top: 25px !important;
+}
+
+.mt-45 {
+  margin-top: 45px !important;
+}
+
+.graph-item {
+  display: flex;
+  place-content: space-between;
+}
+
+.loadingIcon {
+  img {
+    height: 250px;
+    left: 50%;
+    margin-top: -125px;
+    margin-left: -125px;
+    position: absolute;
+    top: 50%;
+    width: 250px;
+  }
+}
+
+.contactForm {
+  input {
+    background-color: #ededed;
+    border-radius: 6px;
+    width: 345px;
+    padding: 10px;
+    border-color: none !important;
+    border: none;
+    margin-bottom: 15px;
+  }
+
+  button {
+    text-transform: none;
+    color: white;
+    background-color: #2784e9;
+    width: 175px;
+    height: 40px;
+  }
+}
+
+.business-section {
+  width: 350px;
+
+  .item {
+    padding: 20px;
+    height: 371px;
+    margin-right: 20px;
+  }
+}
+
+.business-title {
+  text-align: center;
+  padding: 60px;
+}
+
+.nav-link-item {
+  color: #007bff !important;
+}
+
+.selected-image {
+  background-color: #3f9bff !important;
+  color: white;
 }

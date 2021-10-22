@@ -1,10 +1,24 @@
 import React, { useEffect } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import DotStepper from "../../common/components/DotStepper";
+import { useHistory, useLocation } from "react-router-dom";
 
-const Home = ({ menuData, stepData }) => {
-  const [currentStepSlider, setCurrentStepSlider] = React.useState(0);
-  const [currentStepTitle, setCurrentStepTitle] = React.useState(0);
+const Menu = props => {
+  let location = useLocation();
+  let history = useHistory();
+
+  const {
+    menuData,
+    stepData,
+    setCurrentStepTitle,
+    setCurrentStepSlider,
+    currentStepTitle,
+    currentStepSlider
+  } = props;
+
+  const updatePath = idx => {
+    history.push(idx === 0 ? "/home" : "/page2");
+  };
 
   return (
     <>
@@ -17,6 +31,7 @@ const Home = ({ menuData, stepData }) => {
               steps={menuData}
               handleStep={setCurrentStepTitle}
               activeStep={currentStepTitle}
+              updatePath={updatePath}
             />
           </>
         )}
@@ -30,6 +45,7 @@ const Home = ({ menuData, stepData }) => {
             steps={stepData}
             handleStep={setCurrentStepSlider}
             activeStep={currentStepSlider}
+            updatePath={updatePath}
           />
         )}
       </div>
@@ -37,4 +53,4 @@ const Home = ({ menuData, stepData }) => {
   );
 };
 
-export default Home;
+export default Menu;

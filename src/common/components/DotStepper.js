@@ -71,7 +71,8 @@ const DotStepper = props => {
     steps,
     handleStep,
     isMenu,
-    isSection
+    isSection,
+    updatePath
   } = props;
 
   return (
@@ -125,7 +126,10 @@ const DotStepper = props => {
       <div className={classes.dots}>
         {steps.map((item, index) => (
           <div
-            onClick={() => handleStep(index)}
+            onClick={(e) => {
+              handleStep(index);
+              isMenu ? updatePath(index) : e.preventDefault();
+            }}
             key={index}
             className={classes.dotMargin}
           >
